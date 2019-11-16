@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  redis:
+    image: redis
+    container_name: redisdb
+    networks:
+      - node-redis-app-demo-nw
+    expose:
+      - 6379
+  nodeapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nodeapp
+    networks:
+      - node-redis-app-demo-nw
+    ports:
+      - "3000:3000"
+    links:
+      - redis
+    volumes: 
+      - ./:/var/www/app
+    environment:
+      - REDIS_URL=redis://redisdb
+networks:
+  node-redis-app-demo-nw:
+    driver: bridge

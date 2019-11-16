@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  
+  section
+    if products !== null && products !== undefined
+      table Products
+        hr
+        tbody
+          each product in products
+            if product.value !== null && product.key !== null
+              div
+                tr
+                  form(action='http://localhost:3000/updateProduct' method='POST')
+                    input(type='text' value=product.value name='ProductName')
+                    input(type='hidden' value=product.key name='ProductId')
+                    button(type='submit' value='Submit' formaction='http://localhost:3000/updateProduct') Update
+                    button(type='submit' value='Submit' formaction='http://localhost:3000/deleteProduct') Delete
+
+  hr
+
+  section
+    form(action='http://localhost:3000/createProduct' method='POST')
+      label(for='createproduct')
+      input(type='text' value='' placeholder='Enter a new product' name='ProductName' id='createproduct')
+  
+    
+
