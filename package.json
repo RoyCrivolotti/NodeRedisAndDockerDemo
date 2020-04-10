@@ -17,5 +17,8 @@
     "pug": "2.0.0-beta11",
     "redis": "^2.8.0",
     "redisscan": "^2.0.0"
+  },
+  "devDependencies": {
+    "acorn": ">=5.7.4"
   }
 }
